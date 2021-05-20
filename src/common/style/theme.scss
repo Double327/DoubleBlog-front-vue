@@ -1,0 +1,127 @@
+$body-font: "Helvetica Neue" Arial sans-serif;
+$code-font: Monaco courier monospace "Helvetica Neue";
+
+
+$body-font-size: 15px;
+$code-font-size: 0.8em;
+
+
+$dark: #2c3e50;
+$light: #7f8c8d;
+$white: #fefefe;
+$green: #42b983;
+$red: #ff6666;
+$medium: #34495e;
+
+
+$iview-main-primary-color: #409EFF;
+$iview-secondary-success-color: #67C23A;
+$iview-secondary-warning-color: #EB9E05;
+$iview-secondary-danger-color: #FA5555;
+$iview-secondary-info-color: #878D99;
+
+
+$color-gradually-gray-11: #1C1C1C;
+$color-gradually-gray-21: #363636;
+$color-gradually-gray-31: #4F4F4F;
+$color-gradually-gray-41: #696969;
+$color-gradually-gray-51: #828282;
+$color-gradually-gray-61: #9C9C9C;
+$color-gradually-gray-71: #B5B5B5;
+$color-gradually-gray-81: #CFCFCF;
+$color-gradually-gray-91: #E8E8E8;
+$color-gradually-gray-101: #f9f9f9;
+
+
+$responsive-sm: 768px;
+$responsive-md: 992px;
+$responsive-lg: 1200px;
+
+$border-radius: 4px;
+
+
+$header-inner-height: 40px;
+$heading-padding-vertical: 10px;
+$header-height: $header-inner-height + $heading-padding-vertical * 2;
+$mobile-header-height: 50px;
+$mobile-header-inner-height: 40px;
+
+
+$default-body-background-color: #fafafa;
+$default-background-color: #fff;
+$default-background-hover-color: #eee;
+$default-title-color: #333;
+$default-title-hover-color: #409EFF;
+$default-desc-color: #444;
+$default-desc-hover-color: #409EFF;
+$default-info-color: #888;
+$default-info-hover-color: #409EFF;
+$default-link-color: #777;
+$default-link-hover-color: #409EFF;
+$default-select-color: #fff;
+$default-select-background-hover-color: #555;
+$default-border-color: #eee;
+$default-border-hover-color: #ddd;
+$default-box-shadow-color: #ddd;
+
+
+$default-header-background-color: rgba(255, 255, 255, 0.9);
+$default-header-border-color: rgba(240, 240, 240, 1);
+
+
+$default-cell-background-color: #fff;
+
+
+$default-cell-toggle-background-color: #E8E8E8;
+
+
+$default-sectionTitle-square-color: #3498db;
+$default-sectionTitle-title-color: #000;
+$default-sectionTitle-line-color: #333;
+$default-sectionTitle-subtitle-color: #333;
+
+
+$default-codeLine-light: #f5f5f5;
+$default-codeLine-dark: #ececec;
+$default-codeLine-highlight: #91d8d8;
+$default-code-color: #961c7f;
+
+
+$dark-body-background-color: #4f4f4f;
+$dark-background-color: #4f4f4f;
+$dark-background-hover-color: #333;
+$dark-title-color: #ccc;
+$dark-title-hover-color: #ddd;
+$dark-desc-color: #aaa;
+$dark-desc-hover-color: #ccc;
+$dark-info-color: #969696;
+$dark-info-hover-color: #ccc;
+$dark-link-color: #ccc;
+$dark-link-hover-color: #eee;
+$dark-select-color: #555;
+$dark-select-background-hover-color: #fff;
+$dark-border-color: #2f2f2f;
+$dark-border-hover-color: #2c2c2c;
+$dark-box-shadow-color: #2f2f2f;
+
+
+$dark-header-background-color: rgba(#4f4f4f, 0.85);
+$dark-header-border-color: #222;
+
+
+$dark-cell-background-color: #3f3f3f;
+
+
+$dark-cell-toggle-background-color: #555;
+
+
+$dark-sectionTitle-square-color: #ddd;
+$dark-sectionTitle-title-color: #ddd;
+$dark-sectionTitle-line-color: #999;
+$dark-sectionTitle-subtitle-color: #999;
+
+
+$dark-codeLine-light: #2f2f2f;
+$dark-codeLine-dark: #1f1f1f;
+$dark-codeLine-highlight: #4e496e;
+$dark-code-color: #a6e22e;
