@@ -13,7 +13,23 @@ export default [
                 meta: {
                     title: '首页',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
+                        description: 'DoubleBlog,Java',
+                    },
+                }
+            },
+            {
+                path: 'categories',
+                name: 'categories',
+                components: {
+                    header: () => import('@/components/Header'),
+                    content: () => import('@/views/CategoryView'),
+                    footer: () => import('@/components/Footer')
+                },
+                meta: {
+                    title: '文章列表',
+                    content: {
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -29,7 +45,7 @@ export default [
                 meta: {
                     title: '文章列表',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -45,7 +61,7 @@ export default [
                 meta: {
                     title: '文章详情',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -61,7 +77,7 @@ export default [
                 meta: {
                     title: '文章列表',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -77,7 +93,7 @@ export default [
                 meta: {
                     title: '时光轴',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -93,7 +109,39 @@ export default [
                 meta: {
                     title: '友情链接',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
+                        description: 'DoubleBlog,Java',
+                    },
+                }
+            },
+            {
+                path: 'projects',
+                name: 'projects',
+                components: {
+                    header: () => import('@/components/Header'),
+                    content: () => import('@/views/ProjectHome'),
+                    footer: () => import('@/components/Footer')
+                },
+                meta: {
+                    title: '项目展示',
+                    content: {
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
+                        description: 'DoubleBlog,Java',
+                    },
+                }
+            },
+            {
+                path: 'project/:id',
+                name: 'project',
+                components: {
+                    header: () => import('@/components/Header'),
+                    content: () => import('@/views/ProjectView'),
+                    footer: () => import('@/components/Footer')
+                },
+                meta: {
+                    title: '项目展示',
+                    content: {
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -109,7 +157,7 @@ export default [
                 meta: {
                     title: '留言',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }
@@ -125,7 +173,7 @@ export default [
                 meta: {
                     title: '关于我',
                     content: {
-                        keywords: 'DoubleBlog,李广帅,Java',
+                        keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
                     },
                 }

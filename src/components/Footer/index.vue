@@ -1,25 +1,6 @@
 <template>
   <div class="common-footer">
-    <BackTop :height="300" :bottom="bottom" :right="right">
-      <div class="top">
-        <Tooltip :content="ExpandLeftColumn ? '退出通栏' : '通栏阅读'"
-                 placement="left"
-                 v-show="showExpandMenu">
-          <Icon :type="ExpandLeftColumn ? 'ios-contract' : 'ios-expand'" class="icon"
-                @click.native.stop.prevent="toggleExpand">
-          </Icon>
-        </Tooltip>
-
-        <Icon type="md-arrow-dropup" class="icon"
-              @mouseover.native="setButtonState('top', true, true)"
-              @mouseleave.native="setButtonState('top', false)"></Icon>
-        <Icon type="md-arrow-dropdown" class="icon"
-              @click.native.stop.prevent="scrollDown"
-              @mouseover.native="setButtonState('bottom', true, true)"
-              @mouseleave.native="setButtonState('bottom', false)"></Icon>
-      </div>
-    </BackTop>
-
+    <BackTop :height="300"></BackTop>
     <p class="copyright">
       <a target="_blank" href="http://www.miit.gov.cn">{{ $store.state.settings.F_ICP }}</a>
       <span>|</span>
@@ -33,7 +14,6 @@
 
 <script type="text/ecmascript-6">
 import {mapMutations, mapState} from 'vuex';
-import {scrollTop} from '@/utils';
 
 export default {
   name: 'Footer',
@@ -55,60 +35,11 @@ export default {
     ...mapState({
       ExpandLeftColumn: state => state.base.ExpandLeftColumn
     }),
-    showExpandMenu: function () {
-      try {
-        return (this.$route.name === 'article' ||
-            this.$route.name === 'book' ||
-            this.$route.name === 'book/note' ||
-            this.$route.name === 'movie' ||
-            this.$route.name === 'album'
-        ) && document.body.clientWidth >= 1200;
-      } catch (error) {
-        return true;
-      }
-    }
   },
   methods: {
     ...mapMutations({
       updateExpandLeftColumn: 'base/UPDATE_EXPAND_LEFT_COLUMN'
-    }),
-    setButtonState(position, state, start) {
-      this[(Object.is(position, 'bottom') ? 'bottomBtnMouseOver' : 'topBtnMouseOver')] = state;
-      window.cancelAnimationFrame(this.animationFrameId);
-      start && this.slowMoveToAnyWhere();
-    },
-    slowMoveToAnyWhere() {
-      const step = () => {
-        let targetScrollY = window.scrollY;
-        const currentScrollY = document.body.scrollHeight - window.innerHeight;
-        if (this.bottomBtnMouseOver) targetScrollY += 1;
-        if (this.topBtnMouseOver) targetScrollY -= 1;
-        if (targetScrollY < 0) {
-          targetScrollY = 0;
-        } else if (targetScrollY >= currentScrollY) {
-          targetScrollY = currentScrollY;
-        }
-        const canScrollTo = targetScrollY > 0 && targetScrollY < currentScrollY;
-        if (!canScrollTo) return false;
-        window.scrollTo(0, targetScrollY);
-        if (this.bottomBtnMouseOver || this.topBtnMouseOver) {
-          this.animationFrameId = window.requestAnimationFrame(step);
-        } else {
-          window.cancelAnimationFrame(this.animationFrameId);
-          return false;
-        }
-      };
-      this.animationFrameId = window.requestAnimationFrame(step);
-    },
-    scrollDown() {
-      if (document.body.clientWidth >= 1200) {
-        const sTop = document.documentElement.scrollTop || document.body.scrollTop;
-        scrollTop(window, sTop, sTop + 500, 1000);
-      }
-    },
-    toggleExpand() {
-      this.updateExpandLeftColumn(!this.ExpandLeftColumn);
-    }
+    })
   }
 };
 </script>

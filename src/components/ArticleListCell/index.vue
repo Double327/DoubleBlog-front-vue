@@ -21,14 +21,14 @@
             </a>
           </p>
           <p class="operate_info">
-                        <span class="publish-time">
-                            <a>{{ article.createTime | socialDate }}</a>
-                        </span>
+            <span class="publish-time">
+                <a>{{ article.createTime | socialDate }}</a>
+            </span>
             <span class="readings">
-                             <a>
-                                 <Icon type="ios-eye"/> {{ article.click }} 阅读
-                             </a>
-                        </span>
+             <a>
+                 <Icon type="ios-eye"/> {{ article.click }} 阅读
+             </a>
+        </span>
             <span class="comments">
                             <a>
                                 <Icon type="ios-create"/> {{ article.commentCount }} 评论
@@ -257,8 +257,10 @@ export default {
     }
 
     .operate_info {
+      position: absolute;
+      bottom: 8px;
       font-size: 14px;
-      margin: 15px 0 20px;
+      margin: 15px 0 8px;
 
       span {
         margin-right: 8px;

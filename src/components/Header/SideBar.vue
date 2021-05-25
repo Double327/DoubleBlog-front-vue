@@ -22,18 +22,7 @@
           </div>
           <ul class="nav-menu" :class="{'hide': !showNav}">
             <!-- 类别导航 -->
-            <li class="nav-dropdown-container">
-              <router-link class="nav-link" to="#">
-                分类<span class="arrow"></span>
-              </router-link>
-              <ul class="nav-dropdown">
-                <li v-for="(item, index) in categories" :key="index">
-                  <router-link class="nav-link" :to="routerLink(item)">
-                    {{ item.title }}
-                  </router-link>
-                </li>
-              </ul>
-            </li>
+
             <li class="nav-dropdown-container" v-for="(item, index) in menus" :key="index">
               <a v-if="item.target ===true" class="nav-link" :href="item.url" :target="item.target">
                 {{ item.title }}

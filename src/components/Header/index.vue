@@ -21,19 +21,6 @@
           <!--顶部导航条-->
           <ul id="nav">
             <!--类别导航-->
-            <li class="nav-dropdown-container">
-              <router-link class="nav-link" to="/">
-                分类 <span class="arrow"></span>
-              </router-link>
-              <!--类别下拉菜单-->
-              <ul class="nav-dropdown">
-                <li v-for="(item, index) in categories" :key="index">
-                  <router-link class="nav-link" :to="routerLink(item)">
-                    {{ item.name }}
-                  </router-link>
-                </li>
-              </ul>
-            </li>
             <li class="nav-dropdown-container" v-for="(item, index) in menus" :key="index">
               <a v-if="item.target === true" :href="item.url" :target="item.target" class="nav-link">
                 {{ item.title }}

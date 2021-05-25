@@ -13,6 +13,8 @@ import {
     BackTop,
     Button,
     ButtonGroup,
+    Breadcrumb,
+    BreadcrumbItem,
     Card,
     Checkbox,
     Col,
@@ -26,10 +28,13 @@ import {
     Modal,
     Notice,
     Progress,
+    Page,
     Rate,
     Row,
     Spin,
     Switch,
+    Tabs,
+    TabPane,
     Tag,
     Time,
     Tooltip
@@ -41,6 +46,7 @@ Vue.component('Row', Row);
 Vue.component('Col', Col);
 Vue.component('Button', Button);
 Vue.component('Progress', Progress);
+Vue.component('Page', Page);
 Vue.component('Tag', Tag);
 Vue.component('Icon', Icon);
 Vue.component('Affix', Affix);
@@ -59,6 +65,11 @@ Vue.component('Card', Card);
 Vue.component('Divider', Divider);
 Vue.component('DatePicker', DatePicker);
 Vue.component('Time', Time);
+Vue.component('Breadcrumb', Breadcrumb);
+Vue.component('BreadcrumbItem', BreadcrumbItem);
+Vue.component('Tabs', Tabs);
+Vue.component('TabPane', TabPane);
+
 
 Vue.config.productionTip = false;
 

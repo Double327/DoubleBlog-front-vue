@@ -7,18 +7,30 @@ let menus = Mock.mock({
     'data': [
         {
             'id': 1,
+            'title': '文章分类',
+            "url": '/categories',
+            'target': false
+        },
+        {
+            'id': 3,
+            'title': '项目分享',
+            "url": '/projects',
+            'target': false
+        },
+        {
+            'id': 2,
             'title': '时光机',
             "url": '/archive',
             'target': false
         },
         {
-            'id': 2,
+            'id': 4,
             'title': '留言',
             "url": '/leaveComment',
             'target': false
         },
         {
-            'id': 3,
+            'id': 5,
             'title': '关于我',
             "url": '/about',
             'target': false
@@ -107,7 +119,6 @@ const support = function () {
             'commentCount': Random.integer(0, 100),
             'headerImg': Random.image('294x88', '123'),
             'summary': Random.csentence(60)
-
         }
 
         supportList.push(supportItem);
