@@ -1,17 +1,20 @@
 <template>
   <div class="layout-screenshot">
-    <p v-if="images.length === 0">暂无项目截图</p>
-    <ul v-else class="screenshot-container">
+    <ul v-if="images.length > 0" class="screenshot-container">
       <li class="screenshot-item" v-for="(img, index) in images" :key="index">
         <img class="screenshot-img" :src="img" alt="">
       </li>
     </ul>
+    <NoneContent v-else/>
   </div>
 </template>
 
 <script>
+import NoneContent from "@/components/NoneContent";
+
 export default {
   name: "ProjectScreenshot",
+  components: {NoneContent},
   props: {
     images: {
       required: true,

@@ -1,5 +1,5 @@
 <template>
-  <Card to="">
+  <Card to="/project/1">
     <div class="" style="text-align: center">
       <img src="https://file.iviewui.com/dist/2ecd3b0452aa197097d5131afacab7b8.png" alt="">
       <h3>{{ project.name }}</h3>
