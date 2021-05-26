@@ -1,9 +1,9 @@
 <template>
   <div class="">
-    <div v-if="structureContent.length > 0" class="">
+    <div v-if="structure.length > 0" class="">
       <pre>
         <code :style="{lineHeight: '18px'}">
-          {{ structureContent }}
+          {{ structure }}
         </code>
       </pre>
     </div>
@@ -18,9 +18,10 @@ export default {
   name: "ProjectStructure",
   components: {NoneContent},
   props: {
-    structureContent: {
+    structure: {
       required: true,
-      type: String
+      type: String,
+      default: ''
     }
   }
 }

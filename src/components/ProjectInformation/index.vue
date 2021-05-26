@@ -15,12 +15,10 @@ export default {
   components: {NoneContent},
   props: {
     htmlContent: {
+      type: String,
       required: true,
-      type: String
+      default: ''
     }
-  },
-  data() {
-    return {}
   }
 }
 </script>

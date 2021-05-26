@@ -1,4 +1,6 @@
 const Mock = require("mockjs");
+// import './project'
+
 const Random = Mock.Random;
 
 
@@ -128,7 +130,53 @@ const support = function () {
         'data': supportList
     }
 };
+let projectInfo = {
+    code: 200,
+    data: {
+        title: '这里是项目名称',
+        tags: [
+            {
+                id: 1,
+                title: 'Java'
+            },
+            {
+                id: 2,
+                title: 'Tomcat'
+            },
+            {
+                id: 3,
+                title: 'Spring'
+            },
+            {
+                id: 4,
+                title: 'Spring Boot'
+            },
+            {
+                id: 5,
+                title: 'Nginx'
+            },
+            {
+                id: 6,
+                title: 'Vue'
+            },
+        ],
+        desc: '这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介这里是项目简介',
+        thumbnail: 'https://image-1300566513.cos.ap-guangzhou.myqcloud.com/upload/images/09023c6b07166ef623b415808bc3726a.png',
+        screenshot: [
+            'https://oscimg.oschina.net/oscnet/up-5c6b2b3f4c7b415cfbafea06b6aaf365ab9.png',
+            'https://oscimg.oschina.net/oscnet/up-22214fea0fc4bc67d29232d3c8004609e4f.png',
+            'https://oscimg.oschina.net/oscnet/up-e1e6084e96a61dc22c95e820fa6e40a7940.png'
+        ],
+        structure: '',
+        github: 'https://gitee.com/Double_Float/DoubleBlog-front-vue',
+        gitee: 'https://gitee.com/Double_Float/DoubleBlog-front-vue',
+        baseInfoHtml: '<div class="texe-main markdown-body"><h3>项目说明：</h3>\n' +
+            '<p>本博客是学习过程中搭建的项目，为了融合更多知识点，让博客看起来更加高大上，使用了多个框架组合，有些也是企业级项目中常用的解决方式。不够说实话，还有挺多内容缺少的，比如xss攻击预防等安全方面的。</p>\n'
+    }
 
+}
+
+Mock.mock('/dev-api/f/project/1', projectInfo)
 Mock.mock('/dev-api/f/blog', 'get', {})
 Mock.mock('/dev-api/f/categories', 'get', categories)
 Mock.mock('/dev-api/f/menus', menus)
