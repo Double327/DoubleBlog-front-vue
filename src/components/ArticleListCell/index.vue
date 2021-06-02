@@ -44,7 +44,7 @@
       </Col>
       <Col :xs="0" :sm="0" :md="imgSpan" :lg="imgSpan" :order="imgOrderType">
         <div class="img-wrapper" :class="themeClass">
-          <img :src="article.headerImg" alt="">
+          <img :src="article.thumbnail" alt="">
         </div>
       </Col>
     </Row>

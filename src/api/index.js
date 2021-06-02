@@ -17,10 +17,10 @@ export function listCategories() {
     })
 }
 
-//获取所有的菜单
+//获取所有的导航菜单
 export function listMenus() {
     return request({
-        url: '/f/menus',
+        url: '/f/nav',
         method: 'get',
     })
 }

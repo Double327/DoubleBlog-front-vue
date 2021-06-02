@@ -40,7 +40,7 @@ import {
     Tooltip
 } from 'view-design'
 import hljs from 'highlight.js' //导入代码高亮文件
-require('@/mock/mock');
+// require('@/mock/mock');
 
 Vue.component('Row', Row);
 Vue.component('Col', Col);

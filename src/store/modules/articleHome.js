@@ -39,9 +39,6 @@ export default {
                         commit('CLEAR_ARTICLES_BASE_INFO');
                     }
                     commit('UPDATE_ARTICLES_BASE_INFO', response);
-                    // commit('UPDATE_DOCUMENT_TITLE', '文章列表', {root: true});
-                    // commit('UPDATE_DOCUMENT_DESCRIPTION', '文章列表', {root: true});
-                    // commit('UPDATE_DOCUMENT_KEYWORDS', '文章列表', {root: true});
                     resolve(response);
                 }).catch((error) => {
                     reject(error);

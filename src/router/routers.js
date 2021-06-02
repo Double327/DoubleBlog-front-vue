@@ -23,11 +23,11 @@ export default [
                 name: 'categories',
                 components: {
                     header: () => import('@/components/Header'),
-                    content: () => import('@/views/CategoryView'),
+                    content: () => import('@/views/CategoryHome'),
                     footer: () => import('@/components/Footer')
                 },
                 meta: {
-                    title: '文章列表',
+                    title: '文章分类',
                     content: {
                         keywords: 'DoubleBlog,李广帅,布尔先生,Java',
                         description: 'DoubleBlog,Java',
@@ -39,7 +39,7 @@ export default [
                 name: 'articles',
                 components: {
                     header: () => import('@/components/Header'),
-                    content: () => import('@/views/ArticleView'),
+                    content: () => import('@/views/ArticleHome'),
                     footer: () => import('@/components/Footer')
                 },
                 meta: {
@@ -55,7 +55,7 @@ export default [
                 name: 'article',
                 components: {
                     header: () => import('@/components/Header'),
-                    content: () => import('@/views/ArticleView'),
+                    content: () => import('@/views/ArticleHome'),
                     footer: () => import('@/components/Footer')
                 },
                 meta: {

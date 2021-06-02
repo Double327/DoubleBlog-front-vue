@@ -22,10 +22,10 @@
           <ul id="nav">
             <!--类别导航-->
             <li class="nav-dropdown-container" v-for="(item, index) in menus" :key="index">
-              <a v-if="item.target === true" :href="item.url" :target="item.target" class="nav-link">
+              <a v-if="item.frame === true" :href="item.path" :target="item.frame" class="nav-link">
                 {{ item.title }}
               </a>
-              <router-link v-else class="nav-link" :to="item.url">
+              <router-link v-else class="nav-link" :to="item.path">
                 {{ item.title }}
               </router-link>
             </li>
