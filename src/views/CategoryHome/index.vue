@@ -5,66 +5,71 @@
         <div class="layout-left">
           <!--面包屑-->
           <BreadcrumbList :breadcrumbs="breadcrumbs"></BreadcrumbList>
-          <Card :style="{margin: '20px 0'}" dis-hover>
-            <Row>
+          <Card :style="{margin: '20px 0'}" dis-hover v-if="categoriesOptions.length > 0">
+            <Row class="category-row">
               <Col :span="2">
                 <span class="categories-title">一级分类:</span>
               </Col>
               <Col :span="22">
-                <Button v-for="(cate, index) in categoriesOptions"
-                        :class="{'active':categoryLevel1 === index}"
+                <Button
+                    type="text"
+                    :class="{'active': !queryParams.categoryId}"
+                    @click="changeCategory(undefined, 1)"
+                >
+                  全部
+                </Button>
+                <Button v-for="cate in categoriesOptions"
+                        :class="{'active':queryParams.categoryId === cate.id || hasChildren(cate, queryParams.categoryId)}"
                         :key="cate.id"
                         :style="{marginLeft: '10px'}"
                         type="text"
-                        @click="changeCategory(1, index)"
+                        @click="changeCategory(cate.id, 1)"
                 >
                   {{ cate.title }}
                 </Button>
               </Col>
             </Row>
-            <Row class="category-row">
+            <Row class="category-row" v-if="levelOneCategory">
               <Col :span="2">
                 <span class="categories-title">二级分类:</span>
               </Col>
               <Col :span="22">
-                <div
-                    class=""
-                    v-if="categoriesOptions[categoryLevel1].children.length > 0"
+                <Button
+                    type="text"
+                    :class="{'active':queryParams.categoryId === levelOneCategory}"
+                    @click="changeCategory(undefined, 2)"
                 >
-                  <Button v-for="(cate, index2) in categoriesOptions[categoryLevel1].children"
-                          :key="cate.id"
-                          :class="{'active':categoryLevel2 === index2}"
-                          :style="{marginLeft: '10px'}"
-                          type="text"
-                          @click="changeCategory(2, index2)"
-                  >
-                    {{ cate.title }}
-                  </Button>
-                </div>
-                <div
-                    class="wrapper"
-                    v-else
-                >暂无分类
-                </div>
+                  全部
+                </Button>
+                <Button v-for="subCate in subCategory"
+                        :key="subCate.id"
+                        :class="{'active':queryParams.categoryId === subCate.id}"
+                        :style="{marginLeft: '10px'}"
+                        type="text"
+                        @click="changeCategory(subCate.id, 2)"
+                >
+                  {{ subCate.title }}
+                </Button>
               </Col>
-
-
             </Row>
-            <!--<Row class="category-row">-->
-            <!--  <span class="categories-title">三级分类:</span>-->
-            <!--  <Button v-for="cate in categoriesLevel3" :key="cate.id" :style="{marginLeft: '10px'}" type="text">-->
-            <!--    {{ cate.title }}-->
-            <!--  </Button>-->
-            <!--</Row>-->
           </Card>
 
-          <div class="container">
+          <div class="container articles" v-if="articles.length > 0">
             <ArticleListCell
                 v-for="article in articles"
                 :article="article"
                 :key="article.id"
             ></ArticleListCell>
           </div>
+          <div class="container none-articles" v-else>
+            暂无文章
+          </div>
+          <Page
+              :total="articleTotal"
+              :page-size="queryParams.pageSize"
+              :current="queryParams.pageNum"
+              @on-change="changePage"
+          ></Page>
         </div>
       </Col>
       <Col :xs="0" :sm="0" :md="0" :lg="ExpandLeftColumn ? 0 : 7">
@@ -81,36 +86,32 @@ import Recommend from "@/components/Recommend";
 import ArticleListCell from '@/components/ArticleListCell'
 import {mapActions, mapState} from "vuex";
 import BreadcrumbList from "@/components/BreadcrumbList";
-import {getBlogByCategoryId, getCategories} from "@/api/blog";
+import {getCategories} from "@/api/blog";
 import initData from "@/mixins/initData";
 
 export default {
   name: "CategoryHome",
   mixins: [initData],
   beforeMount() {
-    if (this.$store.state.home.articles.length === 0) {
-      this.getArticlesBaseInfo({
-        is_recommend: this.recommend,
-        is_hot: this.hot,
-        ordering: this.mostComment,
-        pageSize: 10,
-        pageNum: 1
-      });
-    }
-    this.loadCategories()
+    this.loadCategories();
   },
   components: {BreadcrumbList, Recommend, ArticleListCell},
   computed: {
     ...mapState({
       ExpandLeftColumn: state => state.base.ExpandLeftColumn,
-      articles: state => state.home.articles
-    })
+      articles: state => state.articleHome.articles,
+      articleTotal: state => state.articleHome.total
+    }),
   },
   data() {
     return {
       categoriesOptions: [],
-      categoryLevel1: 0,
-      categoryLevel2: 0,
+      // 一级分类
+      levelOneCategory: undefined,
+      subCategory: [],
+      queryParams: {
+        categoryId: undefined
+      },
       breadcrumbs: [
         {
           to: '/',
@@ -119,34 +120,62 @@ export default {
         {
           to: '/categories',
           title: '分类'
-        },
-        {
-          to: '',
-          title: 'Java'
         }
       ]
     }
   },
   methods: {
     ...mapActions({
-      getArticlesBaseInfo: 'home/GET_ARTICLES_BASE_INFO'
+      getArticlesBaseInfo: 'articleHome/GET_ARTICLES_BASE_INFO'
     }),
     // 加载目录
     loadCategories() {
       getCategories().then(res => {
         this.categoriesOptions = res.data;
-      })
+        this.loadArticles();
+      });
     },
-    changeCategory(level, index) {
+    // 切换分类
+    changeCategory(categoryId, level) {
       if (level === 1) {
-        this.categoryLevel1 = index
-      } else if (level === 2) {
-        this.categoryLevel2 = index
-        getBlogByCategoryId({categoryId: index}).then(res => {
-          this.articles = res.rows;
-        });
-        this.breadcrumbs[2].title = this.categoriesOptions[this.categoryLevel1].children[index].title
+        this.levelOneCategory = categoryId;
+        this.queryParams.categoryId = categoryId;
+      } else {
+        // category:undefined level:2
+        if (!categoryId) {
+          // category:undefined level:2
+          this.queryParams.categoryId = this.levelOneCategory;
+        } else {
+          // category:有值 level:2
+          this.queryParams.categoryId = categoryId;
+        }
       }
+      // 重载文章
+      this.loadArticles();
+
+      // 获取二级分类
+      if (!this.queryParams.categoryId) {
+        this.subCategory = [];
+        return;
+      }
+      let subCategoryList = this.categoriesOptions.filter(cate => cate.id === this.queryParams.categoryId);
+      if (subCategoryList.length > 0) {
+        this.subCategory = subCategoryList[0].children;
+      }
+    },
+    // 检查是否包含分类
+    hasChildren(root, categoryId) {
+      let list = root.children.filter(item => item.id === categoryId)
+      return list.length > 0
+    },
+    // 加载文章
+    loadArticles() {
+      this.getArticlesBaseInfo({'params': this.queryParams, 'reset': true});
+    },
+    // 分页切换
+    changePage(page) {
+      this.queryParams.pageNum = page;
+      this.loadArticles();
     }
   }
 }
@@ -169,9 +198,7 @@ export default {
   border-color: transparent;
 }
 
-.wrapper {
+.container.none-articles {
   text-align: center;
-  line-height: 32px;
-  box-sizing: border-box;
 }
 </style>

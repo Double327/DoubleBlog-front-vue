@@ -5,12 +5,14 @@ export default {
     state: {
         articles: [],
         totalCount: 0,
+        total: 0,
         noMoreData: false,
         bannerArticles: [],
     },
     mutations: {
         UPDATE_ARTICLES_BASE_INFO(state, datas) {
             // 记录已有的post数量
+            state.total = datas.total;
             state.totalCount += datas.rows.length;
             state.articles = state.articles.concat(datas.rows.filter(() => {
                 return true;
